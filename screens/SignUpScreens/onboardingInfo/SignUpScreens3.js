@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, StatusBar,SafeAreaView,Image} from 'react-native'
-import { COLORS } from '../../constants/theme';
-import HollowButton from '../../components/Buttons/HollowButton';
-import FillButton from '../../components/Buttons/FillButton';
-import ActiveRoundButton from '../../components/Buttons/ActiveRoundButton';
-import DeadRoundButton from '../../components/Buttons/DeadRoundButton';
+import { COLORS } from '../../../constants/theme';
+import HollowButton from '../../../components/Buttons/HollowButton';
+import FillButton from '../../../components/Buttons/FillButton';
+import ActiveRoundButton from '../../../components/Buttons/ActiveRoundButton';
+import DeadRoundButton from '../../../components/Buttons/DeadRoundButton';
 import { useWindowDimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -19,7 +19,7 @@ export default function SignUpScreens3(){
         title: {
             fontSize: 25,
             color: COLORS.primary,
-            fontFamily:"Manrope"
+
         },
         paragraph: {
             fontSize: 18
@@ -65,7 +65,7 @@ export default function SignUpScreens3(){
     
     return(
         <View style={styles.cover}>
-            <Image style={styles.image} source={require("../../assets/loginImages/loginImage1.png")}/>
+            <Image style={styles.image} source={require("../../../assets/loginImages/loginImage1.png")}/>
             <View style={styles.textCover}>
                 <Text style={styles.title}>Have a healthy Vineyard</Text>
                 <Text style={styles.paragraph}>
@@ -73,11 +73,11 @@ export default function SignUpScreens3(){
                 </Text>
             </View>
             <View style={styles.navigation}>
-                <HollowButton style={styles.prev} title="Prev" onPress={() => navigation.navigate('SignUpScreen1')}/>
+                <HollowButton style={styles.prev} title="Prev" onPress={() => navigation.navigate('SignUpScreen2')}/>
                 <DeadRoundButton title="1" onPress={() => navigation.navigate('SignUpScreen1')}/>
                 <DeadRoundButton title="2" onPress={() => navigation.navigate('SignUpScreen2')}/>
                 <ActiveRoundButton title="3"/>
-                <FillButton style={styles.next} title="Next" disabled={true}/>
+                <FillButton style={styles.next} title="Next" onPress={() => navigation.navigate('JoinUs')}/>
             </View>
         </View>
     )

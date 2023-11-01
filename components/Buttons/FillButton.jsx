@@ -10,9 +10,9 @@ export default function FillButton({ title, onPress, style, disabled }) {
             backgroundColor: disabled ? COLORS.gray : COLORS.primary,
             paddingTop: windowWidth * 0.02,
             paddingBottom: windowWidth * 0.02,
-            width: windowWidth / 2.2,
             borderRadius: 10,
             opacity: disabled ? 0.5 : 1,
+            justifyContent:'center'
         },
         buttonText: {
             textAlign: "center",

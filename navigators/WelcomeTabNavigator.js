@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import SignUpScreens1 from '../screens/SignUpScreens/SignUpScreens1';
-import SignUpScreens2 from '../screens/SignUpScreens/SignUpScreens2';
-import SignUpScreens3 from '../screens/SignUpScreens/SignUpScreens3';
+import SignUpScreens1 from '../screens/SignUpScreens/onboardingInfo/SignUpScreens1';
+import SignUpScreens2 from '../screens/SignUpScreens/onboardingInfo/SignUpScreens2';
+import SignUpScreens3 from '../screens/SignUpScreens/onboardingInfo/SignUpScreens3';
 
 const Tab = createBottomTabNavigator();
 

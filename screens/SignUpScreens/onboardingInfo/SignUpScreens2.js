@@ -1,13 +1,13 @@
 import { StyleSheet, Text, View, StatusBar,SafeAreaView,Image} from 'react-native'
-import { COLORS } from '../../constants/theme';
-import HollowButton from '../../components/Buttons/HollowButton';
-import FillButton from '../../components/Buttons/FillButton';
-import ActiveRoundButton from '../../components/Buttons/ActiveRoundButton';
-import DeadRoundButton from '../../components/Buttons/DeadRoundButton';
+import { COLORS } from '../../../constants/theme';
+import HollowButton from '../../../components/Buttons/HollowButton';
+import FillButton from '../../../components/Buttons/FillButton';
+import ActiveRoundButton from '../../../components/Buttons/ActiveRoundButton';
+import DeadRoundButton from '../../../components/Buttons/DeadRoundButton';
 import { useWindowDimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-export default function SignUpScreens1(){
+export default function SignUpScreens2(){
     const windowWidth = useWindowDimensions().width;
 
     const navigation = useNavigation();
@@ -18,11 +18,10 @@ export default function SignUpScreens1(){
         },
         title: {
             fontSize: 25,
-            color: COLORS.primary,
-            fontFamily:"Manrope"
+            color: COLORS.primary
         },
         paragraph: {
-            fontSize: 16
+            fontSize: 18
         },
         image: {
             width: "100%",
@@ -65,19 +64,19 @@ export default function SignUpScreens1(){
     
     return(
         <View style={styles.cover}>
-            <Image style={styles.image} source={require("../../assets/loginImages/loginImage4.png")}/>
+            <Image style={styles.image} source={require("../../../assets/loginImages/loginImage3.png")}/>
             <View style={styles.textCover}>
-                <Text style={styles.title}>Welcome to Varuni</Text>
+                <Text style={styles.title}>Get Tailored Suggestions</Text>
                 <Text style={styles.paragraph}>
-                Welcome to our community! Join us today to unlock a world of exciting opportunities and connect with like-minded individuals. Let's get started on this journey together!
+                Unlock the Power of Personalized Grape Pest Management with Tailored Chemical Suggestions and Optimization Strategies.
                 </Text>
             </View>
             <View style={styles.navigation}>
-                <HollowButton style={styles.prev} title="Prev" disabled={true}/>
-                <ActiveRoundButton title="1"/>
-                <DeadRoundButton title="2" onPress={() => navigation.navigate('SignUpScreen2')}/>
+                <HollowButton style={styles.prev} title="Prev" onPress={() => navigation.navigate('SignUpScreen1')}/>
+                <DeadRoundButton title="1" onPress={() => navigation.navigate('SignUpScreen1')}/>
+                <ActiveRoundButton title="2"/>
                 <DeadRoundButton title="3" onPress={() => navigation.navigate('SignUpScreen3')}/>
-                <FillButton style={styles.next} title="Next"  onPress={() => navigation.navigate('SignUpScreen2')}/>
+                <FillButton style={styles.next} title="Next" onPress={() => navigation.navigate('SignUpScreen3')}/>
             </View>
         </View>
     )
