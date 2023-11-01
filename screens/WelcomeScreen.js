@@ -1,21 +1,21 @@
 import React from "react";
 import { View, Image, Text, StyleSheet } from "react-native";
-import HollowButton from "../components/login/HollowButton";
-import FillButton from "../components/login/FillButton";
+import HollowButton from "../components/Buttons/HollowButton";
+import FillButton from "../components/Buttons/FillButton";
 import { COLORS } from "../constants/theme";
 
-export default function WelcomeScreen() {
+export default function WelcomeScreen({navigation}) {
     return (
         <View style={styles.cover}>
             <Image style={styles.image} source={require("../assets/loginImages/loginImage5.png")} />
             <View style={styles.textCover}>
                 <Text style={styles.title}>Welcome</Text>
                 <Text style={styles.paragraph}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi.
+                Welcome to the Varuni! Revolutionize your grape farming experience with our cutting-edge solution. Discover the perfect balance between pest control and sustainability for healthier, more bountiful harvests. Let's get started on a journey towards thriving vineyards!
                 </Text>
             </View>
             <View style={styles.buttonContainer}>
-                <HollowButton title={"Sign Up"} />
+                <HollowButton title={"Sign Up"} onPress={() => navigation.navigate("SignUpScreen1")} />
                 <FillButton title={"Log In"} />
             </View>
         </View>
@@ -27,12 +27,12 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     title: {
-        fontSize: 40,
+        fontSize: 25,
         color: COLORS.primary,
         fontFamily:"Manrope"
     },
     paragraph: {
-        fontSize: 20,
+        fontSize: 16
     },
     image: {
         width: "100%",
@@ -47,9 +47,10 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         position: "absolute",
-        bottom: 0,
+        bottom: 20,
         left: 0,
         right: 0,
-        padding: 16, // Adjust as needed for spacing
+        paddingLeft:10 , // Adjust as needed for spacing
+        paddingRight:10 , // Adjust as needed for spacing
     },
 });
