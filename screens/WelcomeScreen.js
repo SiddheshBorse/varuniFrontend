@@ -53,7 +53,7 @@ export default function WelcomeScreen({navigation}) {
             </View>
             <View style={styles.buttonContainer}>
                 <HollowButton style={styles.button} title={"Sign Up"} onPress={() => navigation.navigate("SignUpScreen1")} />
-                <FillButton style={styles.button}  title={"Log In"} />
+                <FillButton style={styles.button}  title={"Log In"} onPress={()=>navigation.navigate("SignInScreen")}/>
             </View>
         </View>
     );
