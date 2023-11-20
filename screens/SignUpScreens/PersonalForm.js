@@ -149,7 +149,7 @@ export default function PersonalForm({navigation}) {
                 }
             };
 
-            const apiURL = "http://192.168.1.7:3001/api/v1/farmers/farmers";
+            const apiURL = `${URL}/farmers/farmers`;
 
             try {
                 const response = await fetch(apiURL, {
@@ -165,7 +165,7 @@ export default function PersonalForm({navigation}) {
                 }
               
                 const data = await response.json();
-                console.log('Farmer data submitted successfully:', data);
+                // console.log('Farmer data submitted successfully:', data);
                 navigation.replace("SignInScreen")
               } catch (error) {
                 console.error('Error:', error);

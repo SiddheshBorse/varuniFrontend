@@ -1,3 +1,3 @@
-URL="http://localhost:3001/api/v1/"
+URL="http://192.168.0.14:3001/api/v1/"
 
 module.exports = {URL}

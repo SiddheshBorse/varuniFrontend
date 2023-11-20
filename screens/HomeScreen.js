@@ -9,7 +9,8 @@ import { COLORS } from '../constants/theme';
 import CustomTabBar from '../customTabBar';
 import UploadDocuments from '../components/Cards/UploadDocuments';
 
-export default function HomeScreen() {
+export default function HomeScreen({route}) {
+  const {First}  = route.params;
   const windowWidth = useWindowDimensions().width;
   const windowHeight = useWindowDimensions().height;
   const {StatusBarManager} = NativeModules;
@@ -44,15 +45,14 @@ export default function HomeScreen() {
       <SafeAreaView style = {styles.container}>
         <ScrollView style = {{paddingHorizontal : 8}}>
         <StatusBar style="auto" />
-        <Greeting name = "Chinmay"/>
+        <Greeting name = {First}/>
         <View style = {styles.sectionTitleSection}><Text style = {styles.sectionHeader}>Current Weather</Text></View>
         <View><WeatherWidget></WeatherWidget></View>
         <View style = {styles.sectionTitleSection}><Text style = {styles.sectionHeader}>Today's Spray Cycle</Text></View>
         <View>
-        <SprayCycleCard type = {'fertiliser'} spray = {{name : 'Lorem Ipsum', totalSprays : "2", quantityLitre : "1", quantityAcre : "3"}} count = {1}/>
-        <SprayCycleCard type = {'fertiliser'} spray = {{name : 'Lorem Ipsum', totalSprays : "2", quantityLitre : "1", quantityAcre : "3"}} count = {2}/>
-        <SprayCycleCard type = {'pesticide'} spray = {{name : 'Lorem Ipsum', totalSprays : "2", quantityLitre : "1", quantityAcre : "3"}} count = {3}/>
-        <SprayCycleCard type = {'pesticide'} spray = {{name : 'Lorem Ipsum', totalSprays : "2", quantityLitre : "1", quantityAcre : "3"}} count = {4}/>
+        <SprayCycleCard type = {'fertiliser'} spray = {{name : 'Ferrous sulphate', totalSprays : "1", quantityLitre : "2", quantityAcre : "300"}} count = {1}/>
+        <SprayCycleCard type = {'fertiliser'} spray = {{name : '0-52-34', totalSprays : "2", quantityLitre : "2.5", quantityAcre : "300"}} count = {2}/>
+        <SprayCycleCard type = {'fertiliser'} spray = {{name : 'M-45', totalSprays : "1", quantityLitre : "0.5", quantityAcre : "300"}} count = {3}/>
         </View>
         <View>
           <View style = {styles.banner}>

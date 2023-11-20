@@ -79,7 +79,7 @@ export default function CameraComponent(){
         if (cameraRef) {
           try {
             const data = await cameraRef.current.takePictureAsync();
-            console.log(data);
+            // console.log(data);
             setImage(data.uri);
           } catch (error) {
             console.log(error);
@@ -93,7 +93,7 @@ export default function CameraComponent(){
             const asset = await MediaLibrary.createAssetAsync(image);
             alert('Picture saved! 🎉');
             setImage(null);
-            console.log('saved successfully');
+            // console.log('saved successfully');
           } catch (error) {
             console.log(error);
           }

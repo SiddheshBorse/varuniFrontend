@@ -2,14 +2,26 @@ import { StyleSheet, Text, View} from 'react-native';
 import { useWindowDimensions } from "react-native";
 import {COLORS} from "../../constants/theme";
 import FutureWeather from './FutureWeather';
+import Ionicons from "@expo/vector-icons/Ionicons"
+import { ColorSpace } from 'react-native-reanimated';
 
 
 export default function CurrentWeather({weatherCondition, flag, description, temp}){
     const windowWidth = useWindowDimensions().width;
-    let colorStyle;
-    if(flag === 'Positive') colorStyle = COLORS.blue
-    else if (flag === 'Warning') colorStyle = COLORS.yellow
-    else colorStyle = COLORS.red
+    let colorStyle, mainColor;
+    if (flag === 'Positive'){
+      colorStyle = COLORS.blueSecondary;
+      mainColor = COLORS.blue
+    }
+    else if (flag === 'Warning'){
+      colorStyle = COLORS.yellowSecondary;
+      mainColor = COLORS.yellow;
+    }
+    else{
+      colorStyle = COLORS.redSecondary;
+      mainColor = COLORS.red;
+    }
+    
     const styles = StyleSheet.create({
         container : {
             flexDirection : 'row',
@@ -41,7 +53,7 @@ export default function CurrentWeather({weatherCondition, flag, description, tem
         conditionText : {
             fontSize : 18,
             fontWeight : "600",
-            color : colorStyle,
+            color : COLORS.blue,
             marginBottom : 2,
         },
         suggestionText : {
@@ -49,11 +61,11 @@ export default function CurrentWeather({weatherCondition, flag, description, tem
             fontWeight : "200"
         }
     });
+
+    
     return(
         <View style = {styles.container}>
-            <View>
-                <FutureWeather weatherCondition={ weatherCondition} flag = {flag}/>
-            </View>
+            <View style={[styles.container, {backgroundColor : colorStyle}]}><Ionicons name = {weatherCondition} size={52} color= {COLORS.blue}/></View>
             <View style = {styles.weatherDescription}>
                 <Text style = {styles.temperature}>{temp}&deg; C</Text>
                 <Text style = {styles.conditionText}>{weatherCondition}</Text>

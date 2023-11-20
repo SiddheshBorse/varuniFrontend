@@ -22,7 +22,7 @@ export default function App() {
     <SafeAreaView style={{flex:1}}>
       <NavigationContainer>
       <StatusBar backgroundColor={'white'} barStyle="dark-content"/>
-      <Stack.Navigator initialRouteName='AppScreen' >
+      <Stack.Navigator initialRouteName='Welcome'>
          <Stack.Screen name="Welcome" component={WelcomeScreen} options={{headerShown: false}} />
          <Stack.Screen name="SignUpScreen1" component={SignUpScreens1} options={{headerShown: false}} />
         <Stack.Screen name="SignUpScreen2" component={SignUpScreens2} options={{headerShown:false}}/>
