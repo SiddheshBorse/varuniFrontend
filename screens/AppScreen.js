@@ -22,25 +22,30 @@ import CameraScreen from "./DiseaseDetection";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { URL } from "../constants/URL";
+import { ActivityIndicator } from "react-native";
 
-export default function AppSccreen() {
+export default function AppScreen() {
   const [name, setName] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const user = auth.currentUser;
     if (user) {
       console.log(user.uid);
-      const getFarmerURL = `${URL}/farmers/farmers/uid/${user.uid}`;
+      const getFarmerURL = `http://192.168.1.3:3001/api/v1/farmers/farmers/uid/${user.uid}`;
       axios
         .get(getFarmerURL, {})
         .then((response) => {
           setName(response.data.farmer.firstName);
+          setLoading(false); // Set loading to false once data is fetched
         })
         .catch((err) => {
           console.log(err);
+          setLoading(false); // Set loading to false in case of an error
         });
     } else {
       console.log("no user logged in");
+      setLoading(false); // Set loading to false if no user is logged in
     }
   }, []);
   const windowWidth = useWindowDimensions().width;

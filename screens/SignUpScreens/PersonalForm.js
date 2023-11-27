@@ -6,8 +6,7 @@ import {
   TextInput,
   ScrollView,
   Button,
-} from "react-native";
-import { Picker } from "@react-native-picker/picker";
+} from "react-native"
 import { COLORS } from "../../constants/theme";
 import FillButton from "../../components/Buttons/FillButton";
 import { useNavigation } from "@react-navigation/native";
