@@ -11,11 +11,9 @@ import JoinUs from './screens/SignUpScreens/JoinUs';
 import PersonalForm from './screens/SignUpScreens/PersonalForm';
 import SignInScreen from './screens/SignInScreens/SignInScreen';
 import AppScreen from './screens/AppScreen';
-
+import AddFarmForm from './screens/AddFarmForm';
 
 const Stack = createNativeStackNavigator();
-
-
 
 export default function App() {
   return (
@@ -31,6 +29,7 @@ export default function App() {
         <Stack.Screen name="PersonalInfoSignUp" component={PersonalForm} options={{headerShown:false}}/>
         <Stack.Screen name="SignInScreen" component={SignInScreen} options={{headerShown:false}}/>
         <Stack.Screen name="AppScreen" component={AppScreen} options={{headerShown:false,stackPresentation: 'replace'}}/>
+        
       </Stack.Navigator>
     </NavigationContainer>
     </SafeAreaView>

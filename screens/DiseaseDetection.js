@@ -20,7 +20,7 @@ export default function DiseaseDetection(){
             <Stack.Screen name = "Disease Detection" component={CameraWelcomScreen} options={{headerShown : false}}/>
             <Stack.Screen name = "Device Camera" component={CameraScreen} />
             <Stack.Screen name = "Device Gallery" component={GalleryScreen} />
-            <Stack.Screen name = "Disease Result" component={DiseaseResultScreen} />
+            <Stack.Screen name = "Disease Result" component={DiseaseResultScreen} options={{headerShown : false}} />
         </Stack.Navigator>
     )
 }

@@ -82,7 +82,6 @@ export default function CameraComponent() {
     if (cameraRef) {
       try {
         const data = await cameraRef.current.takePictureAsync();
-        // console.log(data);
         setImage(data.uri);
       } catch (error) {
         console.log(error);
@@ -90,7 +89,7 @@ export default function CameraComponent() {
     }
   };
 
-  const savePicture = async () => {
+  const checkPicture = async () => {
     if (image) {
       try {
         const formData = new FormData();
@@ -112,18 +111,13 @@ export default function CameraComponent() {
             },
           }
         );
-  
-        console.log("Response:", response);
-  
-        // Check for the response status
+
         if (response.status >= 200 && response.status < 300) {
-          // Image uploaded successfully
           const result = response.data.Result;
           navigation.navigate('Disease Result', { result });
           alert('Image uploaded successfully! 🎉');
           setImage(null);
         } else {
-          // Handle the error response from the server
           console.log('Upload failed:', response.status, response.statusText);
         }
       } catch (error) {
@@ -188,7 +182,7 @@ export default function CameraComponent() {
               onPress={() => setImage(null)}
               icon="camera-reverse"
             />
-            <CameraButton title="Save" onPress={savePicture} icon="save" />
+            <CameraButton title="Save" onPress={checkPicture} icon="save" />
           </View>
         ) : (
           <CameraButton

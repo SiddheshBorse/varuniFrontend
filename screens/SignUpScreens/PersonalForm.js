@@ -5,7 +5,7 @@ import {
   View,
   TextInput,
   ScrollView,
-  Button,
+  Button
 } from "react-native"
 import { COLORS } from "../../constants/theme";
 import FillButton from "../../components/Buttons/FillButton";

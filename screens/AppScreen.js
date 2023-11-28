@@ -26,6 +26,7 @@ import { ActivityIndicator } from "react-native";
 
 export default function AppScreen() {
   const [name, setName] = useState(null);
+  const [user , setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -36,7 +37,7 @@ export default function AppScreen() {
       axios
         .get(getFarmerURL, {})
         .then((response) => {
-          setName(response.data.farmer.firstName);
+          setUser(response.data.farmer);
           setLoading(false); // Set loading to false once data is fetched
         })
         .catch((err) => {
@@ -100,13 +101,13 @@ export default function AppScreen() {
   // )}
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFF" }}>
-      {name ? (
+      {user ? (
         <Tab.Navigator tabBar={(props) => <CustomTabBar {...props} />}>
           <Tab.Screen
             name="Home"
             component={HomeScreen}
             options={{ headerShown: false }}
-            initialParams={{First:name}}
+            initialParams={{ user: user }}
           />
           <Tab.Screen
             name="Documents"

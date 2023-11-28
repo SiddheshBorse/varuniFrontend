@@ -8,9 +8,11 @@ import SprayCycleCard from '../components/Cards/SprayCycleCard';
 import { COLORS } from '../constants/theme';
 import CustomTabBar from '../customTabBar';
 import UploadDocuments from '../components/Cards/UploadDocuments';
+import { useEffect } from 'react';
+import AddFarmCard from '../components/Cards/AddFarmCard'
 
 export default function HomeScreen({route}) {
-  const {First}  = route.params;
+  const { user } = route.params;
   const windowWidth = useWindowDimensions().width;
   const windowHeight = useWindowDimensions().height;
   const {StatusBarManager} = NativeModules;
@@ -45,25 +47,38 @@ export default function HomeScreen({route}) {
       <SafeAreaView style = {styles.container}>
         <ScrollView style = {{paddingHorizontal : 8}}>
         <StatusBar style="auto" />
-        <Greeting name = {First}/>
-        <View style = {styles.sectionTitleSection}><Text style = {styles.sectionHeader}>Current Weather</Text></View>
-        <View><WeatherWidget></WeatherWidget></View>
-        <View style = {styles.sectionTitleSection}><Text style = {styles.sectionHeader}>Today's Spray Cycle</Text></View>
+        <Greeting name = {user.firstName}/>
+        {user.farm ? (
+          <>
+            <Text>{`welcome back to your farm!`}</Text>
+            <View style={styles.sectionTitleSection}>
+              <Text style={styles.sectionHeader}>Current Weather</Text>
+            </View>
+            <WeatherWidget />
+            <View style={styles.sectionTitleSection}>
+              <Text style={styles.sectionHeader}>Today's Spray Cycle</Text>
+            </View>
+            <View>
+              <SprayCycleCard type={'fertiliser'} spray={{ name: 'Ferrous sulphate', totalSprays: "1", quantityLitre: "2", quantityAcre: "300" }} count={1} />
+              <SprayCycleCard type={'fertiliser'} spray={{ name: '0-52-34', totalSprays: "2", quantityLitre: "2.5", quantityAcre: "300" }} count={2} />
+              <SprayCycleCard type={'fertiliser'} spray={{ name: 'M-45', totalSprays: "1", quantityLitre: "0.5", quantityAcre: "300" }} count={3} />
+            </View>
+          </>
+        ) : (
+         <View>
+          <AddFarmCard text="Add Farm" icon="add"/>   
+         </View> 
+        )}
         <View>
-        <SprayCycleCard type = {'fertiliser'} spray = {{name : 'Ferrous sulphate', totalSprays : "1", quantityLitre : "2", quantityAcre : "300"}} count = {1}/>
-        <SprayCycleCard type = {'fertiliser'} spray = {{name : '0-52-34', totalSprays : "2", quantityLitre : "2.5", quantityAcre : "300"}} count = {2}/>
-        <SprayCycleCard type = {'fertiliser'} spray = {{name : 'M-45', totalSprays : "1", quantityLitre : "0.5", quantityAcre : "300"}} count = {3}/>
-        </View>
-        <View>
-          <View style = {styles.banner}>
-            <UploadDocuments text = {'Upload your petiole and soil reports to get more insights'} icon = {null} count = {1} textBtn={'upload'}/>
-            <Image source={require('../assets/HomeScreenImages/uploadReports.png')}/>
-          </View>
-          <View style = {styles.banner}>
-            <UploadDocuments text = {'Upload pictures of your plants and get health reports'} icon = {null} count = {2} textBtn={'upload'}/>
-            <Image source={require('../assets/HomeScreenImages/diseaseDetection.png')}/>
-          </View>
-        </View>
+              <View style={styles.banner}>
+                <UploadDocuments text={'Upload your petiole and soil reports to get more insights'} icon={null} count={1} textBtn={'upload'} />
+                <Image source={require('../assets/HomeScreenImages/uploadReports.png')} />
+              </View>
+              <View style={styles.banner}>
+                <UploadDocuments text={'Upload pictures of your plants and get health reports'} icon={null} count={2} textBtn={'upload'} />
+                <Image source={require('../assets/HomeScreenImages/diseaseDetection.png')} />
+              </View>
+            </View>
         </ScrollView>
       </SafeAreaView>
   );
