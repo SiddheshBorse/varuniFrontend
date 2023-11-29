@@ -140,12 +140,14 @@ export default function AddFarmForm() {
 
   const handleSubmit = async () => {
     try {
+      console.log("Starting form submission...");
+  
       validateVillage();
       validateCity();
       validateState();
       validateCountry();
       validatePostalCode();
-
+  
       if (
         villageError ||
         cityError ||
@@ -153,10 +155,15 @@ export default function AddFarmForm() {
         countryError ||
         postalCodeError
       ) {
+        console.log("Validation failed. Aborting form submission.");
         // Handle validation errors, e.g., display an error message or prevent submission
         return;
       }
-
+  
+      console.log("Validation successful. Proceeding with form submission...");
+  
+      const formattedDate = date.toISOString(); // Format date as string for sending to the server
+  
       const farmData = {
         ownerID: farmerID,
         varitey: varitey,
@@ -175,12 +182,13 @@ export default function AddFarmForm() {
         },
         acerage: acerage,
         cuttingDate: {
-          date: date,
+          date: formattedDate,
           cuttingType: cutting,
         },
       };
-
-      // Make a POST request to create the farm and link it to the farmer
+  
+      console.log("Sending farm data to the server:", farmData);
+  
       const response = await fetch(
         `http://192.168.1.3:3001/api/v1/farm/farms/${farmerID}`,
         {
@@ -191,18 +199,25 @@ export default function AddFarmForm() {
           body: JSON.stringify(farmData),
         }
       );
-
-      // Check if the request was successful
+  
+      console.log("Server response:", response.status);
+  
       if (response.ok) {
         const result = await response.json();
-        console.log("Farm created and linked to farmer successfully!", result);
-        // Perform any additional actions upon successful submission
+        if (result && result._id) {
+          console.log("Farm created and linked to farmer successfully!", result);
+          // Perform any additional actions upon successful submission
+        } else {
+          console.error("Unexpected response format:", result);
+          // Handle unexpected response format
+        }
       } else {
-        // Handle the case where the request was not successful
+        const errorMessage = await response.text();
         console.error(
           "Error creating farm:",
           response.status,
-          response.statusText
+          response.statusText,
+          errorMessage
         );
         // Display an error message or take appropriate action
       }
@@ -211,6 +226,7 @@ export default function AddFarmForm() {
       // Handle unexpected errors, e.g., display an error message to the user
     }
   };
+  
 
   const styles = StyleSheet.create({
     cover: {

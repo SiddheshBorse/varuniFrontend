@@ -14,6 +14,7 @@ import { useWindowDimensions } from "react-native";
 import { URL } from "../../constants/URL";
 import { firebaseSignup } from "../../firebase/functions/authentication";
 import { auth } from "../../firebase/firebase";
+import { Picker } from "@react-native-picker/picker";
 
 export default function PersonalForm({navigation}) {
   const windowWidth = useWindowDimensions().width;
@@ -148,7 +149,7 @@ export default function PersonalForm({navigation}) {
                 }
             };
 
-            const apiURL = `${URL}/farmers/farmers`;
+            const apiURL = `http://192.168.1.3:3001/api/v1/farmers/farmers`;
 
             try {
                 const response = await fetch(apiURL, {
