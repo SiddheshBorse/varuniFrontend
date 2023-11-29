@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import BackButton from "../../components/Buttons/BackButton";
 
 export default function ChangePassword({navigation}) {
   return (

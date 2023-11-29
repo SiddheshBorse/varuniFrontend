@@ -103,6 +103,7 @@ export default function SignInScreen({navigation}) {
             style={[styles.input, emailError && styles.inputError]}
             value={email}
             onChangeText={setEmail}
+            autoCapitalize="none"
           />
           {emailError ? <Text style={styles.errorText}>{emailError}</Text> : null}
         </View>
