@@ -190,7 +190,7 @@ export default function AddFarmForm() {
       console.log("Sending farm data to the server:", farmData);
   
       const response = await fetch(
-        `http://192.168.1.3:3001/api/v1/farm/farms/${farmerID}`,
+        `http://192.168.1.6:3001/api/v1/farm/farms/${farmerID}`,
         {
           method: "POST",
           headers: {

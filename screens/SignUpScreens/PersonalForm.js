@@ -149,7 +149,7 @@ export default function PersonalForm({navigation}) {
                 }
             };
 
-            const apiURL = `http://192.168.1.3:3001/api/v1/farmers/farmers`;
+            const apiURL = `http://192.168.1.6:3001/api/v1/farmers/farmers`;
 
             try {
                 const response = await fetch(apiURL, {
