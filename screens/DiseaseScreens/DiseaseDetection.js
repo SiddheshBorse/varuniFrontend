@@ -7,14 +7,6 @@ import DiseaseResultScreen from "./DiseaseResultScreen";
 
 const Stack = createNativeStackNavigator();
 export default function DiseaseDetection(){
-    
-    const styles = StyleSheet.create({
-        container : {
-            flex : 1,
-            justifyContent : "center",
-            alignItems : "center",
-        }
-    });
     return (
         <Stack.Navigator>
             <Stack.Screen name = "Disease Detection" component={CameraWelcomScreen} options={{headerShown : false}}/>

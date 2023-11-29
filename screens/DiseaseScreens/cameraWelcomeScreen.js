@@ -1,6 +1,6 @@
 import { Text, SafeAreaView, StyleSheet, useWindowDimensions, View } from "react-native";
-import GeneralButton from "../components/Buttons/GeneralButton";
-import { COLORS } from "../constants/theme";
+import GeneralButton from "../../components/Buttons/GeneralButton";
+import { COLORS } from "../../constants/theme";
 import CameraScreen from "./CameraScreen"
 import { useNavigation } from "@react-navigation/native";
 export default function CameraWelcomScreen({navigation}){

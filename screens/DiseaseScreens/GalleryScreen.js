@@ -3,8 +3,8 @@ import { Text, View, Image, useWindowDimensions } from "react-native";
 import * as ImagePicker from 'expo-image-picker';
 import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import GeneralButton from "../components/Buttons/GeneralButton";
-import { COLORS } from "../constants/theme";
+import GeneralButton from "../../components/Buttons/GeneralButton";
+import { COLORS } from "../../constants/theme";
 
 export default function GalleryScreen() {
     const windowWidth = useWindowDimensions().width;

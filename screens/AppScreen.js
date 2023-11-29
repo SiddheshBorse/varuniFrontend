@@ -18,37 +18,19 @@ import { COLORS } from "../constants/theme";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import CustomTabBar from "../customTabBar";
 import { auth } from "../firebase/firebase";
-import CameraScreen from "./DiseaseDetection";
+import CameraScreen from "./DiseaseScreens/DiseaseDetection";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { URL } from "../constants/URL";
 import { ActivityIndicator } from "react-native";
+import HomeStack from "./HomeScreens/HomeStack";
 
 export default function AppScreen() {
   const [name, setName] = useState(null);
   const [user , setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const user = auth.currentUser;
-    if (user) {
-      console.log(user.uid);
-      const getFarmerURL = `http://192.168.1.3:3001/api/v1/farmers/farmers/uid/${user.uid}`;
-      axios
-        .get(getFarmerURL, {})
-        .then((response) => {
-          setUser(response.data.farmer);
-          setLoading(false); // Set loading to false once data is fetched
-        })
-        .catch((err) => {
-          console.log(err);
-          setLoading(false); // Set loading to false in case of an error
-        });
-    } else {
-      console.log("no user logged in");
-      setLoading(false); // Set loading to false if no user is logged in
-    }
-  }, []);
+  
   const windowWidth = useWindowDimensions().width;
   const windowHeight = useWindowDimensions().height;
   const { StatusBarManager } = NativeModules;
@@ -101,13 +83,11 @@ export default function AppScreen() {
   // )}
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFF" }}>
-      {user ? (
         <Tab.Navigator tabBar={(props) => <CustomTabBar {...props} />}>
           <Tab.Screen
             name="Home"
-            component={HomeScreen}
+            component={HomeStack}
             options={{ headerShown: false }}
-            initialParams={{ user: user }}
           />
           <Tab.Screen
             name="Documents"
@@ -125,11 +105,6 @@ export default function AppScreen() {
             options={{ headerShown: false }}
           />
         </Tab.Navigator>
-      ) : (
-        <View style={styles.container}>
-          <Text>Loading...</Text>
-        </View>
-      )}
     </SafeAreaView>
   );
 }

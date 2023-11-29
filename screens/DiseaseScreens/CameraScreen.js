@@ -1,5 +1,5 @@
 import { Text, SafeAreaView, StyleSheet, useWindowDimensions } from "react-native";
-import CameraComponent from "../components/Camera/CameraComponent";
+import CameraComponent from "../../components/Camera/CameraComponent";
 export default function DocumentScreen(){
     const styles = StyleSheet.create({
         container : {
