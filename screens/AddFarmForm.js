@@ -145,6 +145,7 @@ export default function AddFarmForm() {
       validateState();
       validateCountry();
       validatePostalCode();
+
       if (
         villageError ||
         cityError ||
@@ -171,7 +172,11 @@ export default function AddFarmForm() {
             country: country,
             postalCode: postalCode,
           },
-          acerage: acerage,
+        },
+        acerage: acerage,
+        cuttingDate: {
+          date: date,
+          cuttingType: cutting,
         },
       };
 

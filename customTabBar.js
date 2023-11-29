@@ -4,7 +4,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { COLORS } from './constants/theme';
 
 function CustomTabBar({ state, descriptors, navigation }) {
-    const styles = { flexDirection: 'row', backgroundColor: '#E1F8DC', marginHorizontal : 16 , marginVertical: 12, padding: 4, borderRadius : 10}
+    const styles = { flexDirection: 'row', backgroundColor: '#E1F8DC', marginHorizontal : 16 ,marginBottom: 12, marginTop:0, padding: 4, borderRadius : 10}
   return (
     <View style={styles}>
       {state.routes.map((route, index) => {
@@ -31,6 +31,7 @@ function CustomTabBar({ state, descriptors, navigation }) {
               flex: 1,
               alignItems: 'center',
               justifyContent: 'center',
+              paddingTop:0,
               height : 50,
               marginHorizontal : 1,
               backgroundColor: isFocused ? '#7BD350' : label == "Camera" ? COLORS.purple : '#E1F8DC',

@@ -16,12 +16,13 @@ import UploadDocuments from "../components/Cards/UploadDocuments";
 import { useEffect, useState } from "react";
 import AddFarmCard from "../components/Cards/AddFarmCard";
 import { auth } from "../firebase/firebase";
-import axios from 'axios'; // Add this line
-import { useNavigation } from "@react-navigation/native";
+import axios from 'axios';
+import { useNavigation, useIsFocused  } from "@react-navigation/native";
 
 export default function HomeScreen({ route }) {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // Add this line
+  const [loading, setLoading] = useState(true);
+  const isFocused = useIsFocused();
 
   const fetchData = async () => {
     try {
@@ -41,8 +42,10 @@ export default function HomeScreen({ route }) {
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (isFocused) {
+      fetchData();
+    }
+  }, [isFocused]);
 
   const navigation = useNavigation();
   const windowWidth = useWindowDimensions().width;
@@ -83,7 +86,6 @@ export default function HomeScreen({ route }) {
           <Greeting name={user.firstName} />
           {user.farm ? (
             <>
-              <Text>{`welcome back to your farm!`}</Text>
               <View style={styles.sectionTitleSection}>
                 <Text style={styles.sectionHeader}>Current Weather</Text>
               </View>
