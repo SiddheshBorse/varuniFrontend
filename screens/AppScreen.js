@@ -12,7 +12,7 @@ import { NativeModules, Platform } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "./HomeScreen";
-import SettingsScreen from "./SettingsScreen";
+import Settings from "./Settings"
 import DocumentScreen from "./DocumentScreen";
 import { COLORS } from "../constants/theme";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -96,7 +96,7 @@ export default function AppScreen() {
           />
           <Tab.Screen
             name="Settings"
-            component={SettingsScreen}
+            component={Settings}
             options={{ headerShown: false }}
           />
           <Tab.Screen

@@ -1,14 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
 import { Button, SafeAreaView, StyleSheet, Text, View, useWindowDimensions , ScrollView, NativeModules} from 'react-native';
-import BackButton from "../components/Buttons/BackButton";
-import SettingsCard from "../components/Cards/settingsCards";
+import SettingsCard from "../../components/Cards/settingsCards";
 import { useNavigation } from '@react-navigation/native';
 
-
-
-export default function SettingsScreens() {
+export default function SettingsScreens({navigation}) {
     const windowWidth = useWindowDimensions().width;
-    const navigation = useNavigation();
     const {StatusBarManager} = NativeModules;
     const styles = StyleSheet.create({
         container: {
@@ -39,10 +34,10 @@ export default function SettingsScreens() {
       </View>
       <View style = {styles.section}>
         <SettingsCard text = "Change Password" icon = "lock-closed" onPress={() => navigation.navigate('ChangePassword')}/>
-        <SettingsCard text = "Change Username" icon = "person"/>
-        <SettingsCard text = "Edit Details" icon = "create"/>
-        <SettingsCard text = "Delete Account" icon = "trash"/>
-        <SettingsCard text = "Log Out" icon = "log-out"/>
+        <SettingsCard text = "Change Username" icon = "person" onPress={() => navigation.navigate('ChangeUsername')}/>
+        <SettingsCard text = "Edit Details" icon = "create" onPress={() => navigation.navigate('EditDetails')}/>
+        <SettingsCard text = "Delete Account" icon = "trash" onPress={() => navigation.navigate('DeleteAccount')}/>
+        <SettingsCard text = "Log Out" icon = "log-out" onPress={() => navigation.navigate('Logout')}/>
       </View>
       </ScrollView>
     </SafeAreaView>

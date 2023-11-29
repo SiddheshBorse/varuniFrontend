@@ -1,0 +1,55 @@
+{
+  "anthracnose": {
+    "name": "Anthracnose",
+    "causalAgent": "Fungi of the genus Elsinoe and related genera",
+    "symptoms": "Circular lesions with dark centers and reddish-brown borders on leaves, fruit, and stems. Lesions may coalesce, leading to large necrotic areas.",
+    "impact": "Can cause defoliation, reduced yield, and affect fruit quality.",
+    "management": "Fungicides, pruning infected plant parts, and maintaining good air circulation to reduce humidity.",
+    "imagePath": "../../assets/DiseaseImages/anthracnose.jpg"
+  },
+  "black_measles": {
+    "name": "Black Measles",
+    "causalAgent": "Phomopsis viticola, a fungus",
+    "symptoms": "Small, dark, raised spots on leaves and fruit. Lesions may coalesce, forming streaks on stems and canes.",
+    "impact": "Leads to reduced yield and affects fruit quality.",
+    "management": "Fungicides, pruning infected canes, and promoting good vine hygiene.",
+    "imagePath": "../../assets/DiseaseImages/black_measles.jpg"
+  },
+  "black_rot": {
+    "name": "Black Rot",
+    "causalAgent": "Guignardia bidwellii, a fungus",
+    "symptoms": "Brown lesions with black fruiting bodies on leaves, fruit, and stems. Infected berries become shriveled and black.",
+    "impact": "Causes significant economic losses due to fruit decay and reduced yield.",
+    "management": "Fungicides, proper pruning, and removal of infected plant material.",
+    "imagePath": "../../assets/DiseaseImages/black_rot.jpg"
+  },
+  "downy_mildew": {
+    "name": "Downy Mildew",
+    "causalAgent": "Plasmopara viticola, an oomycete",
+    "symptoms": "Yellow lesions on the upper surface of leaves with white, downy growth on the lower surface. Infected fruit may show water-soaked lesions.",
+    "impact": "Leads to defoliation, reduced photosynthesis, and lower yields.",
+    "management": "Fungicides, cultural practices to reduce humidity, and resistant grape varieties.",
+    "imagePath": "../../assets/DiseaseImages/downy_mildew.jpg"
+  },
+  "healthy": {
+    "name": "Healthy",
+    "description": "This category refers to grapevines that do not show symptoms of any diseases. Maintaining vine health involves proper cultural practices, regular monitoring, and disease prevention strategies.",
+    "imagePath": "../../assets/DiseaseImages/healthy.jpg"
+  },
+  "leaf_spot": {
+    "name": "Leaf Spot",
+    "causalAgent": "Various fungi such as Cercospora and Phyllosticta",
+    "symptoms": "Circular, dark lesions on leaves with defined margins. Lesions may coalesce, leading to premature defoliation.",
+    "impact": "Can reduce photosynthesis and affect grape quality.",
+    "management": "Fungicides, pruning, and maintaining proper vine spacing for good air circulation.",
+    "imagePath": "../../assets/DiseaseImages/leaf_spot.jpg"
+  },
+  "powdery_mildew": {
+    "name": "Powdery Mildew",
+    "causalAgent": "Erysiphe necator, a fungus",
+    "symptoms": "White, powdery spots on leaves, which later turn brown. Infected berries may crack and shrivel.",
+    "impact": "Decreases photosynthesis, reduces yield, and affects fruit quality.",
+    "management": "Fungicides, sulfur treatments, and cultural practices to reduce humidity.",
+    "imagePath": "../../assets/DiseaseImages/powdery_mildew.jpg"
+  }
+}
