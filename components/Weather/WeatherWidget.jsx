@@ -29,13 +29,13 @@ export default function WeatherWidget() {
         setLoading(false);
         console.log(response);
         console.log(`https:${data.current.condition.icon}`);
-         // Extracting weather conditions for the next 3 hours
-         const hourlyForecast = response.data.forecast.forecastday[0].hour;
-         const next3HoursWeather = hourlyForecast.slice(0, 3);
-         console.log(next3HoursWeather);
- 
-         // Updating the state with the future weather conditions
-         setFutureWeatherConditions(next3HoursWeather);
+        // Extracting weather conditions for the next 3 hours
+        const hourlyForecast = response.data.forecast.forecastday[0].hour;
+        const next3HoursWeather = hourlyForecast.slice(0, 3);
+        console.log(next3HoursWeather);
+
+        // Updating the state with the future weather conditions
+        setFutureWeatherConditions(next3HoursWeather);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -104,18 +104,18 @@ export default function WeatherWidget() {
         </View>
       )}
 
-      {futureWeatherConditions.map((futureCondition, index) => (
-        <View style={styles.smallContainer} key={index}>
-          <FutureWeather
-            weatherCondition={futureCondition.condition.text}
+      {data && data.current && (
+        <View style={styles.smallContainer}>
+          <CurrentWeather
+            weatherCondition={data.current.condition.text}
             flag={"Positive"}
-            time={getFutureTime(index + 1)}
-            description={futureCondition.description}
+            temp={data.current.feelslike_c}
+            description={"Great Weather for the crops"}
             iconSrc={`https:${data.current.condition.icon}`}
-            temp={futureCondition.temp_c}
+            time={getCurrentTime()}
           />
         </View>
-      ))}
+      )}
     </ScrollView>
   );
 }
