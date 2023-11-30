@@ -64,9 +64,7 @@ export default function DiseaseResultCard({ information }) {
       };
 
     const imagePath = information.name;
-    console.log(imagePath);
     const imageSource = imagePaths[imagePath];
-    console.log(imageSource);
 
     return (
       <TouchableOpacity style={styles.container} onPress={toggleExpand} activeOpacity={0.9}>

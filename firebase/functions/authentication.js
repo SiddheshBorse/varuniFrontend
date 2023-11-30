@@ -17,9 +17,6 @@ const firebaseSignin = (email, password) => {
       .then(async(userCredential) => {
         const user = userCredential.user;
         const token = await user.getIdToken(true);
-        // console.log(user.uid);
-        // console.log(user.getIdToken(true));
-        // console.log(user.getIdTokenResult(true));
         resolve(user); // Resolve the promise with the user object
       })
       .catch((error) => {

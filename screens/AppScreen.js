@@ -24,6 +24,7 @@ import axios from "axios";
 import { URL } from "../constants/URL";
 import { ActivityIndicator } from "react-native";
 import HomeStack from "./HomeScreens/HomeStack";
+import DocumentStack from "./DocumentStack";
 
 export default function AppScreen() {
   const [name, setName] = useState(null);
@@ -91,7 +92,7 @@ export default function AppScreen() {
           />
           <Tab.Screen
             name="Documents"
-            component={DocumentScreen}
+            component={DocumentStack}
             options={{ headerShown: false }}
           />
           <Tab.Screen

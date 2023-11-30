@@ -99,8 +99,6 @@ export default function CameraComponent() {
           name: 'image.jpg',
         });
   
-        console.log("Sending request...");
-  
         const response = await axios.post(
           'https://backendmodel-production.up.railway.app/predict/',
           formData,

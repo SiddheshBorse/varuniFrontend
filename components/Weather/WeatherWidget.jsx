@@ -27,13 +27,10 @@ export default function WeatherWidget() {
       .then((response) => {
         setData(response.data);
         setLoading(false);
-        console.log(response);
         console.log(`https:${data.current.condition.icon}`);
         // Extracting weather conditions for the next 3 hours
         const hourlyForecast = response.data.forecast.forecastday[0].hour;
         const next3HoursWeather = hourlyForecast.slice(0, 3);
-        console.log(next3HoursWeather);
-
         // Updating the state with the future weather conditions
         setFutureWeatherConditions(next3HoursWeather);
       })

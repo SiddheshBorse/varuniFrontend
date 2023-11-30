@@ -51,7 +51,6 @@ export default function AddFarmForm() {
   useEffect(() => {
     const user = auth.currentUser;
     if (user) {
-      console.log(user.uid);
       const getFarmerURL = `http://192.168.1.3:3001/api/v1/farmers/farmers/uid/${user.uid}`;
       axios
         .get(getFarmerURL, {})
@@ -186,8 +185,6 @@ export default function AddFarmForm() {
           cuttingType: cutting,
         },
       };
-  
-      console.log("Sending farm data to the server:", farmData);
   
       const response = await fetch(
         `http://192.168.1.6:3001/api/v1/farm/farms/${farmerID}`,

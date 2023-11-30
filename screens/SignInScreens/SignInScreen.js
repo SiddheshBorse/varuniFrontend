@@ -18,7 +18,6 @@ export default function SignInScreen({navigation}) {
         setPassword('');
         setEmailError('');
         setPasswordError('');
-        // console.log("Successful");
         navigation.reset({
           index: 0,
           routes: [{ name: 'AppScreen' }],

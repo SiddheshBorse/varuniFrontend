@@ -38,7 +38,6 @@ export default function HomeScreen({ route }) {
         // Fetch sprays data
         if (farmerResponse.data.farmer && farmerResponse.data.farmer.farm) {
           const getSprayURL = `http://192.168.1.6:3001/api/v1/farm/farms/${farmerResponse.data.farmer.farm}/sprays/day`;
-          console.log(getSprayURL);
           const sprayResponse = await axios.get(getSprayURL, {});
   
           if (sprayResponse.status === 200) {
@@ -82,9 +81,7 @@ export default function HomeScreen({ route }) {
     }
   };
   useEffect(() => {
-    console.log("useEffect triggered");
     const fetchDataAndSprays = async () => {
-      console.log("Fetching data and sprays...");
       if (isFocused) {
         try {
           await fetchData();
@@ -162,36 +159,6 @@ export default function HomeScreen({ route }) {
                 ) : (
                   <Text>No sprays available</Text>
                 )}
-                {/* <SprayCycleCard
-                  type={"fertiliser"}
-                  spray={{
-                    name: "Ferrous sulphate",
-                    totalSprays: "1",
-                    quantityLitre: "2",
-                    quantityAcre: "300",
-                  }}
-                  count={1}
-                />
-                <SprayCycleCard
-                  type={"fertiliser"}
-                  spray={{
-                    name: "0-52-34",
-                    totalSprays: "2",
-                    quantityLitre: "2.5",
-                    quantityAcre: "300",
-                  }}
-                  count={2}
-                />
-                <SprayCycleCard
-                  type={"fertiliser"}
-                  spray={{
-                    name: "M-45",
-                    totalSprays: "1",
-                    quantityLitre: "0.5",
-                    quantityAcre: "300",
-                  }}
-                  count={3}
-                /> */}
               </View>
             </>
           ) : (
