@@ -31,6 +31,7 @@ export default function WeatherWidget() {
         // Extracting weather conditions for the next 3 hours
         const hourlyForecast = response.data.forecast.forecastday[0].hour;
         const next3HoursWeather = hourlyForecast.slice(0, 3);
+
         // Updating the state with the future weather conditions
         setFutureWeatherConditions(next3HoursWeather);
       })
@@ -101,18 +102,18 @@ export default function WeatherWidget() {
         </View>
       )}
 
-      {data && data.current && (
-        <View style={styles.smallContainer}>
-          <CurrentWeather
-            weatherCondition={data.current.condition.text}
+      {futureWeatherConditions.map((futureWeather, index) => (
+        <View key={index} style={styles.smallContainer}>
+          <FutureWeather
+            weatherCondition={futureWeather.condition.text}
             flag={"Positive"}
-            temp={data.current.feelslike_c}
-            description={"Great Weather for the crops"}
-            iconSrc={`https:${data.current.condition.icon}`}
-            time={getCurrentTime()}
+            temp={futureWeather.feelslike_c}
+            description={"Future Weather for the crops"}
+            iconSrc={`https:${futureWeather.condition.icon}`}
+            time={getFutureTime(index * 3)} // Assuming each forecast is for 3 hours
           />
         </View>
-      )}
+      ))}
     </ScrollView>
   );
 }
