@@ -21,86 +21,81 @@ import { useNavigation, useIsFocused } from "@react-navigation/native";
 
 export default function HomeScreen({ route }) {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const isFocused = useIsFocused();
   const [sprays, setSprays] = useState(null);
 
   const fetchData = async () => {
     try {
       const currentUser = auth.currentUser;
+  
       if (currentUser) {
+        // Fetch farmer data
         const getFarmerURL = `http://192.168.1.6:3001/api/v1/farmers/farmers/uid/${currentUser.uid}`;
-        const response = await axios.get(getFarmerURL, {});
-        // console.log(response);
-        setUser(response.data.farmer);
+        const farmerResponse = await axios.get(getFarmerURL, {});
+        setUser(farmerResponse.data.farmer);
+  
+        // Fetch sprays data
+        if (farmerResponse.data.farmer && farmerResponse.data.farmer.farm) {
+          const getSprayURL = `http://192.168.1.6:3001/api/v1/farm/farms/${farmerResponse.data.farmer.farm}/sprays/day`;
+          console.log(getSprayURL);
+          const sprayResponse = await axios.get(getSprayURL, {});
+  
+          if (sprayResponse.status === 200) {
+            const spraysData = sprayResponse.data.sprays[0] || [];
+            const spraysWithProductDetails = await Promise.all(
+              spraysData.map(async (spray) => {
+                const productDetails = await getProductDetails(spray.product);
+                return {
+                  ...spray,
+                  productName: productDetails.productName,
+                };
+              })
+            );
+            setSprays(spraysWithProductDetails);
+          } else {
+            console.error(`Error fetching sprays. Status: ${sprayResponse.status}`);
+          }
+        }
       } else {
         console.log("No user logged in");
       }
     } catch (error) {
       console.error("Error fetching data:", error.message);
       console.error("Axios request details:", error.config);
-    } finally {
-      setLoading(false);
     }
   };
-
-  const fetchSprays = async () => {
+  const getProductDetails = async (productId) => {
     try {
-      if (user && user.farm) {
-        const getSprayURL = `http://192.168.1.6:3001/api/v1/farm/farms/${user.farm}/sprays/day`;
-        const response = await axios.get(getSprayURL, {});
-        console.log(response);
-        if (response.status === 200) {
-          const spraysData = response.data.sprays[0] || [];
-          const spraysWithProductDetails = await Promise.all(
-            spraysData.map(async (spray) => {
-              const productDetails = await getProductDetails(spray.product);
-              return {
-                ...spray,
-                productName: productDetails.productName,
-              };
-            })
-          );
-          setSprays(spraysWithProductDetails);
-        } else {
-          console.error(`Error fetching sprays. Status: ${response.status}`);
-        }
+      const getProductURL = `http://192.168.1.6:3001/api/v1/product/products/${productId}`;
+      const response = await axios.get(getProductURL);
+      if (response.status === 200) {
+        return response.data;
+      } else {
+        console.error(`Error fetching product details. Status: ${response.status}`);
+        return {};
       }
     } catch (error) {
-      console.error("Error fetching data:", error.message);
+      console.error("Error fetching product details:", error.message);
       console.error("Axios request details:", error.config);
-    }
-  };
-  
-  const getProductDetails = async (productId) => {
-  try {
-    const getProductURL = `http://192.168.1.6:3001/api/v1/product/products/${productId}`;
-    const response = await axios.get(getProductURL);
-    if (response.status === 200) {
-      return response.data;
-    } else {
-      console.error(`Error fetching product details. Status: ${response.status}`);
       return {};
     }
-  } catch (error) {
-    console.error("Error fetching product details:", error.message);
-    console.error("Axios request details:", error.config);
-    return {};
-  }
-};
-
+  };
   useEffect(() => {
+    console.log("useEffect triggered");
     const fetchDataAndSprays = async () => {
+      console.log("Fetching data and sprays...");
       if (isFocused) {
-        await fetchData();
-        fetchSprays();
+        try {
+          await fetchData();
+        } catch (error) {
+          console.error("Error fetching data and sprays:", error.message);
+        }
       }
     };
   
-    fetchDataAndSprays(); // Invoke the async function
-  
-    // Since we don't have any cleanup logic, we don't need to return anything.
-  
+    fetchDataAndSprays();
+    setLoading(true);
   }, [isFocused]);
 
   const navigation = useNavigation();
@@ -136,7 +131,7 @@ export default function HomeScreen({ route }) {
   });
   return (
     <SafeAreaView style={styles.container}>
-      {user ? (
+      {user && loading ? (
         <ScrollView style={{ paddingHorizontal: 8 }}>
           <StatusBar style="auto" />
           <Greeting name={user.firstName} />

@@ -69,7 +69,7 @@ export default function SprayCycleCard({type, spray, count}){
                 <Text>{spray.quantityAcre}</Text>
             </View>
             <Animated.View style = {animatedStyle}>
-                <View style = {[styles.sections, {justifyContent : "spa"}]}>
+                <View style = {[styles.sections, {justifyContent : "space-between"}]}>
                     <CardButton type = {"check"}/>
                     <CardButton type = {"feedback"}/>
                     <CardButton type = {"report"}/>
